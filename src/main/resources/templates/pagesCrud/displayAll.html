@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Display All</title>
+</head>
+<body>
+<div th:each="user : ${users}">
+    <a th:href="@{/pagesCrud/{id}(id=${user.getId()})}"
+       th:text="${user.toString()}">VALUE</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="pagesCrud/add">Create new person</a>
+</body>
+</html>
