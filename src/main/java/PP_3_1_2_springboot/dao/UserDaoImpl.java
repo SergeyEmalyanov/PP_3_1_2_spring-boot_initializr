@@ -2,12 +2,10 @@ package PP_3_1_2_springboot.dao;
 
 import PP_3_1_2_springboot.model.User;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -18,8 +16,8 @@ public class UserDaoImpl implements UserDao {
     private final EntityManager entityManager;
 
     @Autowired
-    public UserDaoImpl(EntityManagerFactory entityManagerFactory) {
-        entityManager = entityManagerFactory.createEntityManager();
+    public UserDaoImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override
@@ -28,7 +26,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    @Transactional
     public void add(User user) {
         entityManager.persist(user);
     }
@@ -41,13 +38,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    @Transactional
     public void update(int id, User user) {
         entityManager.merge(user);
     }
 
     @Override
-    @Transactional
     public void delete(int id) {
         entityManager.remove(getUser(id));
     }

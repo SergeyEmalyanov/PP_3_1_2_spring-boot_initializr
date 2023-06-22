@@ -2,6 +2,7 @@ package PP_3_1_2_springboot.service;
 
 import PP_3_1_2_springboot.dao.UserDao;
 import PP_3_1_2_springboot.model.User;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void add(User user) {
         userDao.add(user);
     }
@@ -34,11 +36,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void update(int id, User user) {
         userDao.update(id, user);
     }
 
     @Override
+    @Transactional
     public void delete(int id) {
         userDao.delete(id);
     }
